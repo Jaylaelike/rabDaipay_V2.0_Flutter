@@ -47,5 +47,12 @@
     <string>Location is required to find out where you are.</string>
     <key>NSLocationAlwaysUsageDescription</key>
     <string>Location is required to find out where you are.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Need to upload image</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Need to upload image</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Need to upload image</string>
+
 </dict>
 </plist>

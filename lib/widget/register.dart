@@ -1,9 +1,15 @@
 import 'dart:io';
+import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jayshowloaction/utility/my_style.dart';
 import 'package:jayshowloaction/utility/normal_dialog.dart';
+import 'package:jayshowloaction/widget/my_service.dart';
+import 'package:jayshowloaction/widget/show_map.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -12,7 +18,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
 //Field
-  String gendle, name, email, password;
+  String gendle, name, email, password, urlAvartar, uid;
   File file;
 
 //Method
@@ -32,12 +38,76 @@ class _RegisterState extends State<Register> {
             password.isEmpty) {
           normalDialog(context, 'Have Space', 'Plaese Fill Every Blank');
         } else if (gendle == null) {
-          normalDialog(context, 'Non Choose Gender', 'Please Tap Male or Email');
-          
+          normalDialog(
+              context, 'Non Choose Gender', 'Please Tap Male or Email');
         } else {
+          uploadtoFirebase();
         }
       },
     );
+  }
+
+//upload firebase storege fuiction
+  Future<void> uploadtoFirebase() async {
+    Random random = Random();
+    int i = random.nextInt(100000);
+    String fileName = 'avartar$i.jpg';
+
+    FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+
+    StorageReference reference =
+        firebaseStorage.ref().child('Avartar/$fileName');
+    StorageUploadTask storageUploadTask = reference.putFile(file);
+
+    urlAvartar =
+        await (await storageUploadTask.onComplete).ref.getDownloadURL();
+    print('urlAvartat ==> $urlAvartar');
+    registerAuth();
+  }
+
+//Authen
+  Future<void> registerAuth() async {
+    FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
+    await firebaseAuth
+        .createUserWithEmailAndPassword(email: email, password: password)
+        .then((value) {
+      FirebaseUser firebaseUser = value.user;
+      uid = firebaseUser.uid;
+      print('Iid ==> $uid');
+
+      UserUpdateInfo userUpdateInfo = UserUpdateInfo();
+      userUpdateInfo.displayName = name;
+      userUpdateInfo.photoUrl = urlAvartar;
+      firebaseUser.updateProfile(userUpdateInfo);
+      insertVlaueToFirestore();
+    }).catchError((value) {
+      String title = value.code;
+      String message = value.message;
+      normalDialog(context, title, message);
+    });
+  }
+
+  Future<void> insertVlaueToFirestore() async {
+    Map<String, dynamic> map = Map();
+    map['Email'] = email;
+    map['Gender'] = gendle;
+    map['Name'] = name;
+    map['Uid'] = uid;
+    map['UrlAvartar'] = urlAvartar;
+
+    Firestore firestore = Firestore.instance;
+    CollectionReference reference = firestore.collection('UserCollect');
+
+    await reference.document().setData(map).then((value) {
+      MaterialPageRoute route =
+          MaterialPageRoute(builder: (value) => MyService());
+      Navigator.of(context).pushAndRemoveUntil(route, (vlaue) => false);
+    }).catchError((value) {
+      String title = value.code;
+      String message = value.message;
+      normalDialog(context, title, message);
+    });
   }
 
   @override
