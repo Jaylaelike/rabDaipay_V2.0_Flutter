@@ -170,7 +170,11 @@ class _MyServiceState extends State<MyService> {
           'https://firebasestorage.googleapis.com/v0/b/jayshowlocation.appspot.com/o/Avartar%2Favartar14005.jpg?alt=media&token=7ccc9346-2f7e-47bd-8719-71493878eb43';
     }
     return UserAccountsDrawerHeader(
-      currentAccountPicture: Image.network(urlAvartar),
+      currentAccountPicture: CircleAvatar(
+        radius: 30.0,
+        backgroundImage: NetworkImage(urlAvartar),
+        backgroundColor: Colors.green,
+      ),
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage('images/wall2.png'),
