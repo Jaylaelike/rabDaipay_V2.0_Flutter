@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "265362097278",
+    "firebase_url": "https://jayshowlocation.firebaseio.com",
+    "project_id": "jayshowlocation",
+    "storage_bucket": "jayshowlocation.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265362097278:android:4cb0ba04d6c5c7d410c42f",
+        "android_client_info": {
+          "package_name": "com.thaipbschpeng.jayshowloaction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "265362097278-h618l7tamepsdicdhk9bmspgnmmdgv21.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnqwT_qzsAKpkjQqYOhKDbZL3_chUHhb8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "265362097278-h618l7tamepsdicdhk9bmspgnmmdgv21.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
