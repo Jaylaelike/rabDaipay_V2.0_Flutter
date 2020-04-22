@@ -4,6 +4,7 @@ import 'package:jayshowloaction/utility/my_style.dart';
 import 'package:jayshowloaction/widget/add_location.dart';
 import 'package:jayshowloaction/widget/main_Home.dart';
 import 'package:jayshowloaction/widget/show_map.dart';
+import 'package:location/location.dart';
 
 class MyService extends StatefulWidget {
   //state throw
@@ -16,13 +17,19 @@ class MyService extends StatefulWidget {
 
 class _MyServiceState extends State<MyService> {
 //Field
-  Widget currrentWidget = ShowMap();
+  Widget currrentWidget;
+  String name, email, urlAvartar;
+  double lat, lng;
 
 //Method
 
   @override
   void initState() {
     super.initState();
+    findLatLng();
+
+    findNameandAvatar();
+
     var object = widget.currentWidget;
     if (object != null) {
       setState(() {
@@ -31,7 +38,40 @@ class _MyServiceState extends State<MyService> {
     }
   }
 
-Widget mySizeBox() {
+  Future<void> findLatLng() async {
+    LocationData locationData = await findLocation();
+    setState(() {
+      lat = locationData.latitude;
+      lng = locationData.longitude;
+      print('lat =>>> $lat, lng ===>> $lng');
+      currrentWidget = ShowMap(
+        lat: lat,
+        lng: lng,
+      );
+    });
+  }
+
+  Future<LocationData> findLocation() async {
+    var location = Location();
+    try {
+      return await location.getLocation();
+    } catch (e) {
+      print('e location = ${e.toString()}');
+      return null;
+    }
+  }
+
+  Future<void> findNameandAvatar() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    FirebaseUser firebaseUser = await auth.currentUser();
+    setState(() {
+      name = firebaseUser.displayName;
+      email = firebaseUser.email;
+      urlAvartar = firebaseUser.photoUrl;
+    });
+  }
+
+  Widget mySizeBox() {
     return SizedBox(
       height: 180.0,
       width: 10.0,
@@ -45,7 +85,7 @@ Widget mySizeBox() {
           showHead(),
           menuShowmap(),
           menuShowAdd(),
-           mySizeBox(),
+          mySizeBox(),
           menuSignOut(),
         ],
       ),
@@ -56,7 +96,10 @@ Widget mySizeBox() {
     return ListTile(
       onTap: () {
         setState(() {
-          currrentWidget = ShowMap();
+          currrentWidget = ShowMap(
+            lat: lat,
+            lng: lng,
+          );
         });
         Navigator.of(context).pop();
       },
@@ -74,7 +117,10 @@ Widget mySizeBox() {
     return ListTile(
       onTap: () {
         setState(() {
-          currrentWidget = AddLocation();
+          currrentWidget = AddLocation(
+            lat: lat,
+            lng: lng,
+          );
         });
         Navigator.of(context).pop();
       },
@@ -114,8 +160,17 @@ Widget mySizeBox() {
   }
 
   UserAccountsDrawerHeader showHead() {
+    if (name == null) {
+      name = '';
+    } else if (email == null) {
+      email = '';
+    }
+    if (urlAvartar == null) {
+      urlAvartar =
+          'https://firebasestorage.googleapis.com/v0/b/jayshowlocation.appspot.com/o/Avartar%2Favartar14005.jpg?alt=media&token=7ccc9346-2f7e-47bd-8719-71493878eb43';
+    }
     return UserAccountsDrawerHeader(
-      currentAccountPicture: Image.asset('images/logo2.png'),
+      currentAccountPicture: Image.network(urlAvartar),
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage('images/wall2.png'),
@@ -123,11 +178,11 @@ Widget mySizeBox() {
         ),
       ),
       accountName: Text(
-        'Name',
+        '$name Login',
         style: TextStyle(color: MyStyle().primaryColor),
       ),
       accountEmail: Text(
-        'Email',
+        '$email',
         style: TextStyle(color: MyStyle().darkColor),
       ),
     );
@@ -136,11 +191,11 @@ Widget mySizeBox() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: myDrawer(),
-      appBar: AppBar(
-        title: Text('My Service'),
-      ),
-      body: currrentWidget,
-    );
+        drawer: myDrawer(),
+        appBar: AppBar(
+          title: Text('My Service'),
+        ),
+        body:
+            currrentWidget == null ? MyStyle().showProgress() : currrentWidget);
   }
 }

@@ -5,6 +5,10 @@ import 'package:jayshowloaction/widget/my_service.dart';
 import 'package:location/location.dart';
 
 class ShowMap extends StatefulWidget {
+  final double lat;
+  final double lng;
+  ShowMap({Key key, this.lat, this.lng}) : super(key: key);
+
   @override
   _ShowMapState createState() => _ShowMapState();
 }
@@ -20,8 +24,11 @@ class _ShowMapState extends State<ShowMap> {
   @override
   void initState() {
     super.initState();
-    findLatLng();
-
+    //findLatLng();
+    setState(() {
+      lat = widget.lat;
+      lng = widget.lng;
+    });
     BitmapDescriptor.fromAssetImage(
             ImageConfiguration(size: Size(128, 128)), 'images/point2.png')
         .then((value) {
@@ -91,7 +98,7 @@ class _ShowMapState extends State<ShowMap> {
   Widget showMap() {
     // lat = 10.501047;
     // lng = 99.173455;
-
+    print('latlng on showmap ==>>> $lat, $lng');
     LatLng centerLatLng = LatLng(lat, lng);
     CameraPosition cameraPosition =
         CameraPosition(target: centerLatLng, zoom: 16.0);
@@ -146,10 +153,11 @@ class _ShowMapState extends State<ShowMap> {
 
   @override
   Widget build(BuildContext context) {
-    return lat == null
-        ? Center(
-            child: CircularProgressIndicator(),
-          )
-        : showMap();
+    return Scaffold(
+        body: lat == null
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : showMap());
   }
 }
