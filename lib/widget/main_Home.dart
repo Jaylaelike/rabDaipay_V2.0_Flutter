@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jayshowloaction/utility/my_style.dart';
 import 'package:jayshowloaction/utility/normal_dialog.dart';
 import 'package:jayshowloaction/widget/my_service.dart';
+import 'package:jayshowloaction/widget/register.dart';
 
 
 class MainHome extends StatefulWidget {
@@ -112,7 +113,10 @@ class _MainHomeState extends State<MainHome> {
       borderSide: BorderSide(
         color: MyStyle().darkColor,
       ),
-      onPressed: () {},
+      onPressed: () {
+        MaterialPageRoute route = MaterialPageRoute(builder: (value)=> Register());
+        Navigator.of(context).push(route);
+      },
       child: Text(
         'Sing Up',
         style: TextStyle(
