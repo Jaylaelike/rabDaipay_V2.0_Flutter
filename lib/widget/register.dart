@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:jayshowloaction/utility/my_style.dart';
+import 'package:jayshowloaction/utility/normal_dialog.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -8,14 +12,31 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
 //Field
-  String gendle;
+  String gendle, name, email, password;
+  File file;
 
 //Method
 
   Widget registerButton() {
     return IconButton(
       icon: Icon(Icons.cloud_upload),
-      onPressed: () {},
+      onPressed: () {
+        if (file == null) {
+          normalDialog(
+              context, 'Non Choose Avatar', 'Plase Tap Camera or Gallery');
+        } else if (name == null ||
+            name.isEmpty ||
+            email == null ||
+            email.isEmpty ||
+            password == null ||
+            password.isEmpty) {
+          normalDialog(context, 'Have Space', 'Plaese Fill Every Blank');
+        } else if (gendle == null) {
+          normalDialog(context, 'Non Choose Gender', 'Please Tap Male or Email');
+          
+        } else {
+        }
+      },
     );
   }
 
@@ -51,7 +72,11 @@ class _RegisterState extends State<Register> {
           Radio(
             value: 'Male',
             groupValue: gendle,
-            onChanged: (value) {},
+            onChanged: (value) {
+              setState(() {
+                gendle = value;
+              });
+            },
           ),
           Text('Male'),
         ],
@@ -62,7 +87,11 @@ class _RegisterState extends State<Register> {
           Radio(
             value: 'Female',
             groupValue: gendle,
-            onChanged: (value) {},
+            onChanged: (value) {
+              setState(() {
+                gendle = value;
+              });
+            },
           ),
           Text('Female'),
         ],
@@ -81,6 +110,7 @@ class _RegisterState extends State<Register> {
         Container(
           width: 250.0,
           child: TextField(
+            onChanged: (value) => name = value.trim(),
             decoration: InputDecoration(
               helperText: subtitle,
               helperStyle: TextStyle(color: color),
@@ -110,6 +140,7 @@ class _RegisterState extends State<Register> {
         Container(
           width: 250.0,
           child: TextField(
+            onChanged: (value) => email = value.trim(),
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               helperText: subtitle,
@@ -137,6 +168,7 @@ class _RegisterState extends State<Register> {
         Container(
           width: 250.0,
           child: TextField(
+            onChanged: (value) => password = value.trim(),
             decoration: InputDecoration(
               helperText: subtitle,
               labelText: title,
@@ -156,12 +188,14 @@ class _RegisterState extends State<Register> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         RaisedButton.icon(
-          onPressed: () {},
+          onPressed: () {
+            getAvtar(ImageSource.camera);
+          },
           icon: Icon(Icons.add_a_photo),
           label: Text('Camera'),
         ),
         RaisedButton.icon(
-          onPressed: () {},
+          onPressed: () => getAvtar(ImageSource.gallery),
           icon: Icon(Icons.add_photo_alternate),
           label: Text('Gallery'),
         ),
@@ -169,12 +203,26 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  Widget showAwatar() => Container(
-        margin: EdgeInsets.all(30.0),
-        height: MediaQuery.of(context).size.height * 0.3,
-        child: Image.asset('images/awatar.png'),
+  Future<void> getAvtar(ImageSource source) async {
+    try {
+      var result = await ImagePicker.pickImage(
+        source: source,
+        maxWidth: 800.0,
+        maxHeight: 800.0,
       );
+      setState(() {
+        file = result;
+      });
+    } catch (e) {}
+  }
 
+  Widget showAwatar() {
+    return Container(
+      margin: EdgeInsets.all(30.0),
+      height: MediaQuery.of(context).size.height * 0.3,
+      child: file == null ? Image.asset('images/awatar.png') : Image.file(file),
+    );
+  }
 //class
 
 }
