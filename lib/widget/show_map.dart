@@ -129,8 +129,8 @@ class _ShowMapState extends State<ShowMap> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(bottom: 30.0),
-              child: FloatingActionButton(
+              margin: EdgeInsets.only(bottom: 40.0),
+              child: FloatingActionButton(backgroundColor: Colors.pinkAccent,
                 onPressed: () {
                   MaterialPageRoute route = MaterialPageRoute(
                       builder: (value) => MyService(

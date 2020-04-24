@@ -118,7 +118,7 @@ class _MainHomeState extends State<MainHome> {
         Navigator.of(context).push(route);
       },
       child: Text(
-        'Sing Up',
+        'สมัครสมาชิก',
         style: TextStyle(
           color: MyStyle().darkColor,
         ),
@@ -141,7 +141,7 @@ class _MainHomeState extends State<MainHome> {
         }
       },
       child: Text(
-        'Sign In',
+        'เข้าใช้งาน',
         style: TextStyle(
           color: Colors.white,
         ),
@@ -200,6 +200,7 @@ class _MainHomeState extends State<MainHome> {
                 userForm(),
                 mySizeBox(),
                 passwordForm(),
+                mySizeBox(),
                 showBotton(),
               ],
             ),

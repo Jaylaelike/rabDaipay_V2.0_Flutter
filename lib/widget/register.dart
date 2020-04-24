@@ -25,21 +25,21 @@ class _RegisterState extends State<Register> {
 
   Widget registerButton() {
     return IconButton(
-      icon: Icon(Icons.cloud_upload),
+      icon: Icon(Icons.fingerprint),
       onPressed: () {
         if (file == null) {
           normalDialog(
-              context, 'Non Choose Avatar', 'Plase Tap Camera or Gallery');
+              context, 'คุณยังไม่มีรูปภาพ', 'กรุณากดอัพโหลดรูปภาพ');
         } else if (name == null ||
             name.isEmpty ||
             email == null ||
             email.isEmpty ||
             password == null ||
             password.isEmpty) {
-          normalDialog(context, 'Have Space', 'Plaese Fill Every Blank');
+          normalDialog(context, 'ข้อมูลของคุณยังว่าง', 'กรุณากรอกข้อมูลคุณให้ครบ');
         } else if (gendle == null) {
           normalDialog(
-              context, 'Non Choose Gender', 'Please Tap Male or Email');
+              context, 'ระบุเพศของคุณ', 'โปรดระบุเพศของคุณ');
         } else {
           uploadtoFirebase();
         }
@@ -148,7 +148,7 @@ class _RegisterState extends State<Register> {
               });
             },
           ),
-          Text('Male'),
+          Text('ชาย'),
         ],
       );
 
@@ -163,7 +163,7 @@ class _RegisterState extends State<Register> {
               });
             },
           ),
-          Text('Female'),
+          Text('หญิง'),
         ],
       );
 
@@ -199,10 +199,11 @@ class _RegisterState extends State<Register> {
   }
 
   Widget emailForm() {
-    String title = "Display Email: ";
+    String title = " Email: ";
 
     String subtitle = "Type Your Email in Blank: ";
     IconData iconData = Icons.email;
+    Color color = Colors.orangeAccent;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -214,10 +215,13 @@ class _RegisterState extends State<Register> {
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               helperText: subtitle,
+              helperStyle: TextStyle(color: color),
               labelText: title,
+              labelStyle: TextStyle(color: color),
               icon: Icon(
                 iconData,
                 size: 36.0,
+                color: color,
               ),
             ),
           ),
@@ -227,10 +231,11 @@ class _RegisterState extends State<Register> {
   }
 
   Widget passForm() {
-    String title = "Display Password: ";
+    String title = "Enter your Password: ";
 
     String subtitle = "Type Your password in Blank: ";
     IconData iconData = Icons.lock;
+    Color color = Colors.pinkAccent;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -241,10 +246,13 @@ class _RegisterState extends State<Register> {
             onChanged: (value) => password = value.trim(),
             decoration: InputDecoration(
               helperText: subtitle,
+              helperStyle: TextStyle(color: color),
               labelText: title,
+              labelStyle: TextStyle(color: color),
               icon: Icon(
                 iconData,
                 size: 36.0,
+                color: color,
               ),
             ),
           ),

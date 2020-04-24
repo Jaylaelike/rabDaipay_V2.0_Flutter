@@ -125,9 +125,9 @@ class _MyServiceState extends State<MyService> {
         Navigator.of(context).pop();
       },
       leading: Icon(
-        Icons.local_grocery_store,
+        Icons.add_location,
         size: 36.0,
-        color: MyStyle().darkColor,
+        color: Colors.redAccent,  //MyStyle().darkColor
       ),
       title: Text('Show Add Location'),
       subtitle: Text('Show Add Location'),
@@ -173,7 +173,7 @@ class _MyServiceState extends State<MyService> {
       currentAccountPicture: CircleAvatar(
         radius: 30.0,
         backgroundImage: NetworkImage(urlAvartar),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.grey,
       ),
       decoration: BoxDecoration(
         image: DecorationImage(
