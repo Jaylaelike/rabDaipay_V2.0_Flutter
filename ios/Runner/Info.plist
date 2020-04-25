@@ -53,6 +53,19 @@
     <string>Need to upload image</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>Need to upload image</string>
+    <key>CFBundleURLTypes</key>
+       <array>
+         <dict>
+           <key>CFBundleTypeRole</key>
+           <string>Editor</string>
+           <key>CFBundleURLName</key>
+           <string>com.chpsite.herokuapp.flutter_deep_link</string>
+           <key>CFBundleURLSchemes</key>
+           <array>
+             <string>rabdaipay</string>
+           </array>
+         </dict>
+       </array>
 
 </dict>
 </plist>
