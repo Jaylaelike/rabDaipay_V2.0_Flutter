@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'data.dart';
 import 'dart:math';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:jayshowloaction/utility/my_style.dart';
 
 class UserGuide extends StatefulWidget {
   @override
@@ -68,11 +70,11 @@ class _UserGuideState extends State<UserGuide> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text("User Guide",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 46.0,
-                          fontFamily: "Calibre-Semibold",
-                          letterSpacing: 1.0,
+                        style: GoogleFonts.kanit(
+                          fontSize: 45.0,
+                          fontWeight: FontWeight.bold,
+                         
+                          color: MyStyle().primaryColor,
                         )),
                     // IconButton(
                     //   icon: Icon(
@@ -85,7 +87,7 @@ class _UserGuideState extends State<UserGuide> {
                   ],
                 ),
               ),
-               SizedBox(
+              SizedBox(
                 height: 20.0,
               ),
               Padding(
