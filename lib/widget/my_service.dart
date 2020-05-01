@@ -4,6 +4,7 @@ import 'package:jayshowloaction/utility/my_style.dart';
 import 'package:jayshowloaction/widget/add_location.dart';
 import 'package:jayshowloaction/widget/main_Home.dart';
 import 'package:jayshowloaction/widget/show_map.dart';
+import 'package:jayshowloaction/widget/user_Guide.dart';
 import 'package:location/location.dart';
 
 class MyService extends StatefulWidget {
@@ -86,6 +87,7 @@ class _MyServiceState extends State<MyService> {
           menuShowmap(),
           menuShowAdd(),
           mySizeBox(),
+          menuShowguide(),
           menuSignOut(),
         ],
       ),
@@ -127,10 +129,28 @@ class _MyServiceState extends State<MyService> {
       leading: Icon(
         Icons.add_location,
         size: 36.0,
-        color: Colors.redAccent,  //MyStyle().darkColor
+        color: Colors.redAccent, //MyStyle().darkColor
       ),
       title: Text('Show Add Location'),
       subtitle: Text('Show Add Location'),
+    );
+  }
+
+  ListTile menuShowguide() {
+    return ListTile(
+      onTap: () {
+        setState(() {
+          currrentWidget = UserGuide();
+        });
+        Navigator.of(context).pop();
+      },
+      leading: Icon(
+        Icons.view_carousel,
+        size: 36.0,
+        color: Colors.pink, //MyStyle().darkColor
+      ),
+      title: Text('User Guide'),
+      subtitle: Text('คู่มือการใช้งาน'),
     );
   }
 
