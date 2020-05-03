@@ -9,20 +9,22 @@ class ProfileDisplay extends StatefulWidget {
 
 class _ProfileDisplayState extends State<ProfileDisplay> {
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
-  //Circular Image
-  Positioned myImages(String images) {
-    return Positioned(
-      top: 0.0,
-      left: 100.0,
-      child: Container(
-          width: 160.0,
-          height: 160.0,
-          decoration: new BoxDecoration(
-              shape: BoxShape.circle,
-              image: new DecorationImage(
-                  fit: BoxFit.fill, image: new NetworkImage(images)))),
-    );
-  }
+
+  // //Circular Image
+  // Positioned myImages(String images) {
+  //   return Positioned(
+  //     top: 0.0,
+  //     left: 100.0,
+  //     child: Container(
+  //         width: 160.0,
+  //         height: 160.0,
+  //         decoration: new BoxDecoration(
+  //             shape: BoxShape.circle,
+  //             image: new DecorationImage(
+  //                 fit: BoxFit.fill, image: new NetworkImage(images))))
+  //   );
+  // }
+  
 
   _openMap() async {
     const url =
@@ -44,7 +46,7 @@ class _ProfileDisplayState extends State<ProfileDisplay> {
   }
 
   _linkedinURL(String $profileName) async {
-    var url = 'tel:027902315';
+    var url = 'tel:027902314';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -79,12 +81,14 @@ class _ProfileDisplayState extends State<ProfileDisplay> {
     }
   }
 
+ 
   //Center Widget
   Center profilePage(String profileName, String jobDescription, String location,
       String followerVal, String webLink) {
-    return Center(
+    return 
+    Center(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(10.0),
         child: Container(
           width: 400.0,
           height: 400.0,
@@ -331,31 +335,29 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
   }
 }
 
+   Widget mySizeBox() {
+    return SizedBox(
+      height: 150.0,
+      width: 10.0,
+    );
+  }
+
 class ProfileImageWidget extends StatefulWidget {
   @override
   _ProfileImageWidgetState createState() => _ProfileImageWidgetState();
 }
 
 class _ProfileImageWidgetState extends State<ProfileImageWidget> {
-  var height = 160.0;
-  var width = 160.0;
+  var height = 120.0;
+  var width = 120.0;
   var shape = BoxShape.circle;
-
-  void _changeShape() {
-    setState(() {
-      shape = BoxShape.rectangle;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
       top: 30.0,
-      left: 120.0,
+      left: 130.0,
       child: GestureDetector(
-        onTap: () {
-          _changeShape();
-        },
         child: Container(
             width: width,
             height: height,
