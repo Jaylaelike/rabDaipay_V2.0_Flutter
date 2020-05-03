@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jayshowloaction/utility/my_style.dart';
 import 'package:jayshowloaction/widget/add_location.dart';
+import 'package:jayshowloaction/widget/contact_us.dart';
 import 'package:jayshowloaction/widget/main_Home.dart';
 import 'package:jayshowloaction/widget/show_map.dart';
 import 'package:jayshowloaction/widget/user_Guide.dart';
@@ -74,7 +75,7 @@ class _MyServiceState extends State<MyService> {
 
   Widget mySizeBox() {
     return SizedBox(
-      height: 180.0,
+      height: 150.0,
       width: 10.0,
     );
   }
@@ -88,6 +89,7 @@ class _MyServiceState extends State<MyService> {
           menuShowAdd(),
           mySizeBox(),
           menuShowguide(),
+          menuShowcontact(),
           menuSignOut(),
         ],
       ),
@@ -151,6 +153,24 @@ class _MyServiceState extends State<MyService> {
       ),
       title: Text('User Guide'),
       subtitle: Text('คู่มือการใช้งาน'),
+    );
+  }
+
+    ListTile menuShowcontact() {
+    return ListTile(
+      onTap: () {
+        setState(() {
+          currrentWidget = ProfileDisplay();
+        });
+        Navigator.of(context).pop();
+      },
+      leading: Icon(
+        Icons.add_call,
+        size: 36.0,
+        color: Colors.deepPurpleAccent, //MyStyle().darkColor
+      ),
+      title: Text('Contact Us'),
+      subtitle: Text('ติดต่อเรา'),
     );
   }
 

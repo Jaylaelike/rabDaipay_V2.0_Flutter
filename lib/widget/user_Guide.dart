@@ -41,7 +41,7 @@ class _UserGuideState extends State<UserGuide> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(
-                    left: 12.0, right: 12.0, top: 30.0, bottom: 8.0),
+                    left: 12.0, right: 12.0, top: 10.0, bottom: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -69,7 +69,7 @@ class _UserGuideState extends State<UserGuide> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text("User Guide",
+                    Text("การใช้งาน",
                         style: GoogleFonts.kanit(
                           fontSize: 45.0,
                           fontWeight: FontWeight.bold,
@@ -88,7 +88,7 @@ class _UserGuideState extends State<UserGuide> {
                 ),
               ),
               SizedBox(
-                height: 20.0,
+                height: 10.0,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 20.0),
