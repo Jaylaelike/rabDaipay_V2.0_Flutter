@@ -195,7 +195,7 @@ class _ProfileDisplayState extends State<ProfileDisplay> {
                                 child: Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Icon(FontAwesomeIcons.line,
-                                      color: Color(0xff32F66D), size: 45.0),
+                                      color: Color(0xff2BEC10), size: 50.0),
                                 )),
                             onTap: () {
                               _githubURL("alexjamesddd");
@@ -227,7 +227,7 @@ class _ProfileDisplayState extends State<ProfileDisplay> {
                                 child: Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Icon(FontAwesomeIcons.phone,
-                                      color: Color(0xff125DDE), size: 45.0),
+                                      color: Color(0xffF31A80), size: 45.0),
                                 )),
                             onTap: () {
                               _linkedinURL("alexjamesddd");
