@@ -348,8 +348,8 @@ class ProfileImageWidget extends StatefulWidget {
 }
 
 class _ProfileImageWidgetState extends State<ProfileImageWidget> {
-  var height = 120.0;
-  var width = 120.0;
+  var height = 140.0;
+  var width = 140.0;
   var shape = BoxShape.circle;
 
   @override

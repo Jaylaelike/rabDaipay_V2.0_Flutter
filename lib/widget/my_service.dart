@@ -130,7 +130,7 @@ class _MyServiceState extends State<MyService> {
       },
       leading: Icon(
         Icons.add_location,
-        size: 36.0,
+        size: 40.0,
         color: Colors.redAccent, //MyStyle().darkColor
       ),
       title: Text('Show Add Location'),
@@ -148,7 +148,7 @@ class _MyServiceState extends State<MyService> {
       },
       leading: Icon(
         Icons.view_carousel,
-        size: 36.0,
+        size: 40.0,
         color: Colors.pink, //MyStyle().darkColor
       ),
       title: Text('User Guide'),
@@ -166,7 +166,7 @@ class _MyServiceState extends State<MyService> {
       },
       leading: Icon(
         Icons.add_call,
-        size: 36.0,
+        size: 40.0,
         color: Colors.deepPurpleAccent, //MyStyle().darkColor
       ),
       title: Text('Contact Us'),
@@ -181,7 +181,7 @@ class _MyServiceState extends State<MyService> {
       },
       leading: Icon(
         Icons.exit_to_app,
-        size: 36.0,
+        size: 40.0,
         color: MyStyle().darkColor,
       ),
       title: Text('Sign Out'),
