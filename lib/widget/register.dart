@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:jayshowloaction/utility/my_style.dart';
 import 'package:jayshowloaction/utility/normal_dialog.dart';
 import 'package:jayshowloaction/widget/my_service.dart';
-import 'package:jayshowloaction/widget/show_map.dart';
+
 
 class Register extends StatefulWidget {
   @override
