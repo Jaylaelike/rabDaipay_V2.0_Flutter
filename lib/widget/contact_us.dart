@@ -10,21 +10,6 @@ class ProfileDisplay extends StatefulWidget {
 class _ProfileDisplayState extends State<ProfileDisplay> {
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
-  // //Circular Image
-  // Positioned myImages(String images) {
-  //   return Positioned(
-  //     top: 0.0,
-  //     left: 100.0,
-  //     child: Container(
-  //         width: 160.0,
-  //         height: 160.0,
-  //         decoration: new BoxDecoration(
-  //             shape: BoxShape.circle,
-  //             image: new DecorationImage(
-  //                 fit: BoxFit.fill, image: new NetworkImage(images))))
-  //   );
-  // }
-  
 
   _openMap() async {
     const url =
@@ -81,169 +66,169 @@ class _ProfileDisplayState extends State<ProfileDisplay> {
     }
   }
 
- 
   //Center Widget
   Center profilePage(String profileName, String jobDescription, String location,
       String followerVal, String webLink) {
-    return 
-    Center(
+    return Center(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
           width: 400.0,
-          height: 400.0,
+          height: 300.0,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.0),
             color: Color(0xffffffff),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 80.0),
-                    child: Text(
-                      profileName,
-                      style: TextStyle(
-                          color: new Color(0xff662d8c),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24.0),
+          child: SingleChildScrollView(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40.0),
+                      child: Text(
+                        profileName,
+                        style: TextStyle(
+                            color: new Color(0xff662d8c),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24.0),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Text(
-                      jobDescription,
-                      style: TextStyle(
-                          color: new Color(0xffed1e79), fontSize: 18.0),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        jobDescription,
+                        style: TextStyle(
+                            color: new Color(0xffed1e79), fontSize: 18.0),
+                      ),
                     ),
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(FontAwesomeIcons.mapMarker,
-                                color: Color(0xffed1e79), size: 20.0),
-                            SizedBox(width: 10.0),
-                            InkWell(
-                              child: Text(
-                                location,
-                                style: TextStyle(
-                                    color: new Color(0xff662d8c),
-                                    fontSize: 20.0),
-                              ),
-                              onTap: () {
-                                _openMap();
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: <Widget>[
-                            FavoriteWidget(),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Icon(FontAwesomeIcons.link,
-                          color: Color(0xffed1e79), size: 20.0),
-                      SizedBox(width: 10.0),
-                      InkWell(
-                        child: Text(
-                          webLink,
-                          style: TextStyle(
-                              color: new Color(0xff662d8c), fontSize: 20.0),
-                        ),
-                        onTap: () {
-                          _openURL();
-                        },
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
+                    Row(
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            child: Material(
-                                color: new Color(0xffffffff),
-                                shape: CircleBorder(),
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Icon(FontAwesomeIcons.facebook,
-                                      color: Color(0xff125DDE), size: 45.0),
-                                )),
-                            onTap: () {
-                              _facebookURL("alexjamesddd");
-                            },
+                          child: Row(
+                            children: <Widget>[
+                              Icon(FontAwesomeIcons.mapMarker,
+                                  color: Color(0xffed1e79), size: 20.0),
+                              SizedBox(width: 10.0),
+                              InkWell(
+                                child: Text(
+                                  location,
+                                  style: TextStyle(
+                                      color: new Color(0xff662d8c),
+                                      fontSize: 20.0),
+                                ),
+                                onTap: () {
+                                  _openMap();
+                                },
+                              ),
+                            ],
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            child: Material(
-                                color: new Color(0xffffffff),
-                                shape: CircleBorder(),
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Icon(FontAwesomeIcons.line,
-                                      color: Color(0xff2BEC10), size: 50.0),
-                                )),
-                            onTap: () {
-                              _githubURL("alexjamesddd");
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            child: Material(
-                                color: new Color(0xffffffff),
-                                shape: CircleBorder(),
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Icon(FontAwesomeIcons.twitter,
-                                      color: Color(0xff125DDE), size: 45.0),
-                                )),
-                            onTap: () {
-                              _twitterURL("alexjamesddd");
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            child: Material(
-                                color: new Color(0xffffffff),
-                                shape: CircleBorder(),
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Icon(FontAwesomeIcons.phone,
-                                      color: Color(0xffF31A80), size: 45.0),
-                                )),
-                            onTap: () {
-                              _linkedinURL("alexjamesddd");
-                            },
+                          child: Row(
+                            children: <Widget>[
+                              FavoriteWidget(),
+                            ],
                           ),
                         ),
                       ],
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    Row(
+                      children: <Widget>[
+                        Icon(FontAwesomeIcons.link,
+                            color: Color(0xffed1e79), size: 20.0),
+                        SizedBox(width: 10.0),
+                        InkWell(
+                          child: Text(
+                            webLink,
+                            style: TextStyle(
+                                color: new Color(0xff662d8c), fontSize: 20.0),
+                          ),
+                          onTap: () {
+                            _openURL();
+                          },
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              child: Material(
+                                  color: new Color(0xffffffff),
+                                  shape: CircleBorder(),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Icon(FontAwesomeIcons.facebook,
+                                        color: Color(0xff125DDE), size: 45.0),
+                                  )),
+                              onTap: () {
+                                _facebookURL("alexjamesddd");
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              child: Material(
+                                  color: new Color(0xffffffff),
+                                  shape: CircleBorder(),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Icon(FontAwesomeIcons.line,
+                                        color: Color(0xff2BEC10), size: 50.0),
+                                  )),
+                              onTap: () {
+                                _githubURL("alexjamesddd");
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              child: Material(
+                                  color: new Color(0xffffffff),
+                                  shape: CircleBorder(),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Icon(FontAwesomeIcons.twitter,
+                                        color: Color(0xff125DDE), size: 45.0),
+                                  )),
+                              onTap: () {
+                                _twitterURL("alexjamesddd");
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              child: Material(
+                                  color: new Color(0xffffffff),
+                                  shape: CircleBorder(),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Icon(FontAwesomeIcons.phone,
+                                        color: Color(0xffF31A80), size: 45.0),
+                                  )),
+                              onTap: () {
+                                _linkedinURL("alexjamesddd");
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -275,7 +260,7 @@ class _ProfileDisplayState extends State<ProfileDisplay> {
                 children: <Widget>[
                   profilePage("สำนักวิศวกรรรม", "ไทยพีบีเอส", "ที่อยู่", "100",
                       "www.thaipbs.or.th"),
-                  ProfileImageWidget(),
+                   ProfileImageWidget(),
                 ],
               ),
             ),
@@ -335,12 +320,6 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
   }
 }
 
-   Widget mySizeBox() {
-    return SizedBox(
-      height: 150.0,
-      width: 10.0,
-    );
-  }
 
 class ProfileImageWidget extends StatefulWidget {
   @override
@@ -348,26 +327,31 @@ class ProfileImageWidget extends StatefulWidget {
 }
 
 class _ProfileImageWidgetState extends State<ProfileImageWidget> {
-  var height = 140.0;
-  var width = 140.0;
+  var height = 130.0;
+  var width = 130.0;
   var shape = BoxShape.circle;
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 30.0,
-      left: 130.0,
-      child: GestureDetector(
-        child: Container(
-            width: width,
-            height: height,
-            decoration: new BoxDecoration(
-                shape: shape,
-                image: new DecorationImage(
-                    fit: BoxFit.fill,
-                    image: new NetworkImage(
-                        "https://static.workventure.com/uploads/images/companies/gallery/original/image-สมัครงาน-สถานีโทรทัศน์ไทยพีบีเอส-520181116111450.png")))),
-      ),
+    return Column(
+      children: <Widget>[
+        Center(
+          child: Positioned(
+            right: 130.0,
+            left: 130.0,
+            child: GestureDetector(
+              child: Container(
+                  width: width,
+                  height: height,
+                  decoration: new BoxDecoration(
+                      shape: shape,
+                      image: new DecorationImage(
+                          fit: BoxFit.fill,
+                          image: new AssetImage('images/image_contact.png'),))),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
