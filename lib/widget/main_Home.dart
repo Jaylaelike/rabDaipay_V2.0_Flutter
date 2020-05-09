@@ -6,7 +6,6 @@ import 'package:jayshowloaction/utility/normal_dialog.dart';
 import 'package:jayshowloaction/widget/my_service.dart';
 import 'package:jayshowloaction/widget/register.dart';
 
-
 class MainHome extends StatefulWidget {
   @override
   _MainHomeState createState() => _MainHomeState();
@@ -31,7 +30,6 @@ class _MainHomeState extends State<MainHome> {
     FirebaseUser firebaseUser = await auth.currentUser();
     if (firebaseUser != null) {
       routeToMap();
-      
     }
   }
 
@@ -114,14 +112,26 @@ class _MainHomeState extends State<MainHome> {
         color: MyStyle().darkColor,
       ),
       onPressed: () {
-        MaterialPageRoute route = MaterialPageRoute(builder: (value)=> Register());
+        MaterialPageRoute route =
+            MaterialPageRoute(builder: (value) => Register());
         Navigator.of(context).push(route);
       },
-      child: Text(
-        'สมัครสมาชิก',
-        style: TextStyle(
-          color: MyStyle().darkColor,
-        ),
+      child: Row(
+        children: <Widget>[
+          Text(
+            'สมัครสมาชิก',
+            style: TextStyle(
+              color: MyStyle().darkColor,
+              
+            ),
+          ),
+          Icon(
+            Icons.fingerprint,
+            color: MyStyle().darkColor,
+            size: 24.0,
+            semanticLabel: 'Text to announce in accessibility modes',
+          ),
+        ],
       ),
     );
   }
@@ -140,11 +150,21 @@ class _MainHomeState extends State<MainHome> {
           checkAuthen();
         }
       },
-      child: Text(
-        'เข้าใช้งาน',
-        style: TextStyle(
-          color: Colors.white,
-        ),
+      child: Row(
+        children: <Widget>[
+          Text(
+            'เข้าใช้งาน',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+           Icon(
+            Icons.assignment_ind,
+            color: MyStyle().primaryColor,
+            size: 24.0,
+            semanticLabel: 'Text to announce in accessibility modes',
+          ),
+        ],
       ),
     );
   }
@@ -166,7 +186,7 @@ class _MainHomeState extends State<MainHome> {
   }
 
   void routeToMap() {
-      MaterialPageRoute route =
+    MaterialPageRoute route =
         MaterialPageRoute(builder: (BuildContext buildContext) {
       return MyService();
     });

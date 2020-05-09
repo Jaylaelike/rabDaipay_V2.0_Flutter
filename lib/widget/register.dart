@@ -10,7 +10,6 @@ import 'package:jayshowloaction/utility/my_style.dart';
 import 'package:jayshowloaction/utility/normal_dialog.dart';
 import 'package:jayshowloaction/widget/my_service.dart';
 
-
 class Register extends StatefulWidget {
   @override
   _RegisterState createState() => _RegisterState();
@@ -25,21 +24,20 @@ class _RegisterState extends State<Register> {
 
   Widget registerButton() {
     return IconButton(
-      icon: Icon(Icons.fingerprint),
+      icon: Icon(Icons.fingerprint,size: 35.0,),
       onPressed: () {
         if (file == null) {
-          normalDialog(
-              context, 'คุณยังไม่มีรูปภาพ', 'กรุณากดอัพโหลดรูปภาพ');
+          normalDialog(context, 'คุณยังไม่มีรูปภาพ', 'กรุณากดอัพโหลดรูปภาพ');
         } else if (name == null ||
             name.isEmpty ||
             email == null ||
             email.isEmpty ||
             password == null ||
             password.isEmpty) {
-          normalDialog(context, 'ข้อมูลของคุณยังว่าง', 'กรุณากรอกข้อมูลคุณให้ครบ');
-        } else if (gendle == null) {
           normalDialog(
-              context, 'ระบุเพศของคุณ', 'โปรดระบุเพศของคุณ');
+              context, 'ข้อมูลของคุณยังว่าง', 'กรุณากรอกข้อมูลคุณให้ครบ');
+        } else if (gendle == null) {
+          normalDialog(context, 'ระบุเพศของคุณ', 'โปรดระบุเพศของคุณ');
         } else {
           uploadtoFirebase();
         }
@@ -110,6 +108,13 @@ class _RegisterState extends State<Register> {
     });
   }
 
+  Widget mySizeBox() {
+    return SizedBox(
+      height: 20.0,
+      width: 10.0,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,9 +128,11 @@ class _RegisterState extends State<Register> {
         children: <Widget>[
           showAwatar(),
           showButon(),
+          mySizeBox(),
           nameForm(),
           chooseGender(),
           emailForm(),
+          mySizeBox(),
           passForm(),
         ],
       ),
@@ -168,11 +175,11 @@ class _RegisterState extends State<Register> {
       );
 
   Widget nameForm() {
-    String title = "Display Name: ";
+    String title = "ชื่อของคุณ: ";
+    // String subtitle = "ภาษาอังกฤษเท่านั้น: ";
 
-    String subtitle = "Type Your Name in Blank: ";
     IconData iconData = Icons.account_box;
-    Color color = Colors.green;
+    Color color = Colors.blue;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -182,10 +189,13 @@ class _RegisterState extends State<Register> {
           child: TextField(
             onChanged: (value) => name = value.trim(),
             decoration: InputDecoration(
-              helperText: subtitle,
-              helperStyle: TextStyle(color: color),
+              hintText: 'กรุณากรอกชื่อของคุณ',
+              hintStyle: TextStyle(color: color),
+              // helperText: subtitle,
+              // helperStyle: TextStyle(color: color),
               labelText: title,
               labelStyle: TextStyle(color: color),
+              border: OutlineInputBorder(),
               icon: Icon(
                 iconData,
                 size: 36.0,
@@ -201,9 +211,8 @@ class _RegisterState extends State<Register> {
   Widget emailForm() {
     String title = " Email: ";
 
-    String subtitle = "Type Your Email in Blank: ";
     IconData iconData = Icons.email;
-    Color color = Colors.orangeAccent;
+    Color color = Colors.green;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -214,10 +223,11 @@ class _RegisterState extends State<Register> {
             onChanged: (value) => email = value.trim(),
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-              helperText: subtitle,
+              hintText: 'กรุณากรอก Email ของคุณ',
               helperStyle: TextStyle(color: color),
               labelText: title,
               labelStyle: TextStyle(color: color),
+              border: OutlineInputBorder(),
               icon: Icon(
                 iconData,
                 size: 36.0,
@@ -231,9 +241,8 @@ class _RegisterState extends State<Register> {
   }
 
   Widget passForm() {
-    String title = "Enter your Password: ";
+    String title = "Password: ";
 
-    String subtitle = "Type Your password in Blank: ";
     IconData iconData = Icons.lock;
     Color color = Colors.pinkAccent;
 
@@ -245,10 +254,11 @@ class _RegisterState extends State<Register> {
           child: TextField(
             onChanged: (value) => password = value.trim(),
             decoration: InputDecoration(
-              helperText: subtitle,
+              hintText: 'กรุณากรอก รหัสผ่าน ของคุณ',
               helperStyle: TextStyle(color: color),
               labelText: title,
               labelStyle: TextStyle(color: color),
+              border: OutlineInputBorder(),
               icon: Icon(
                 iconData,
                 size: 36.0,
@@ -270,12 +280,12 @@ class _RegisterState extends State<Register> {
             getAvtar(ImageSource.camera);
           },
           icon: Icon(Icons.add_a_photo),
-          label: Text('Camera'),
+          label: Text('ถ่ายรูป'),
         ),
         RaisedButton.icon(
           onPressed: () => getAvtar(ImageSource.gallery),
           icon: Icon(Icons.add_photo_alternate),
-          label: Text('Gallery'),
+          label: Text('ภาพจากเครื่อง'),
         ),
       ],
     );

@@ -237,7 +237,8 @@ class _MyServiceState extends State<MyService> {
     return Scaffold(
         drawer: myDrawer(),
         appBar: AppBar(
-          title: Text('My Service'),
+          backgroundColor: MyStyle().primaryColor,
+          title: Text('RabdaiPay App'),
         ),
         body:
             currrentWidget == null ? MyStyle().showProgress() : currrentWidget);
