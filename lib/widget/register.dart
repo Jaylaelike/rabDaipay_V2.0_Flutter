@@ -97,7 +97,7 @@ class _RegisterState extends State<Register> {
     Firestore firestore = Firestore.instance;
     CollectionReference reference = firestore.collection('UserCollect');
 
-    await reference.document().setData(map).then((value) {
+    await reference.document(uid).setData(map).then((value) {
       MaterialPageRoute route =
           MaterialPageRoute(builder: (value) => MyService());
       Navigator.of(context).pushAndRemoveUntil(route, (vlaue) => false);

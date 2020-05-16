@@ -1,6 +1,11 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:jayshowloaction/models/marker_collect_model.dart';
 import 'package:jayshowloaction/widget/add_location.dart';
+import 'package:jayshowloaction/widget/detail_marker.dart';
 import 'package:jayshowloaction/widget/my_service.dart';
 import 'package:location/location.dart';
 
@@ -18,6 +23,8 @@ class _ShowMapState extends State<ShowMap> {
 
   double lat, lng;
   BitmapDescriptor policeIcon;
+  List<Marker> list = List();
+  //  List<String> listDocuments = List();  ///EditForm
 
 //Method
 
@@ -41,6 +48,58 @@ class _ShowMapState extends State<ShowMap> {
 
   Future<Null> readDataFormFirebase() async {
     print('#############ReadDateFormFirebase Worked.##############');
+
+    // list = [
+    //   locationMarker(),
+    //   jjMaker(),
+    //   policeMarker(),
+    // ];
+
+    Firestore firestore = Firestore.instance;
+    CollectionReference collectionReference =
+        firestore.collection('MakerCollect');
+    await collectionReference.snapshots().listen((event) {
+      List<DocumentSnapshot> snapshots = event.documents;
+      for (var map in snapshots) {
+        MakerCollectModel model = MakerCollectModel.fromMap((map.data));
+        print('Name ==>>> ${model.name}');
+         String nameDocument = map.documentID;
+          // listDocuments.add(nameDocument);  ///EditForm
+        Marker marker = createMarker(model, nameDocument);
+        setState(() {
+          list.add(marker);
+          print('myMarkers set lenght ==>>> ${myMarkers().length}');
+        });
+      }
+    });
+  }
+
+  Marker createMarker(MakerCollectModel markerCollectModel, String nameDocument) {
+    Marker marker;
+    Random random = Random();
+    int i = random.nextInt(100);
+    String idString = 'id$i';
+
+    marker = Marker(
+      markerId: MarkerId(idString),
+      position: LatLng(markerCollectModel.lat, markerCollectModel.lng),
+      infoWindow: InfoWindow(
+        title: markerCollectModel.name,
+        snippet: markerCollectModel.detail,
+      ),
+      onTap: () {
+        print('You Tap Name ==>> ${markerCollectModel.name}');
+
+        MaterialPageRoute route = MaterialPageRoute(
+          builder: (context) => DetailMaker(
+            model: markerCollectModel, 
+            // model: markerCollectModel, nameDocument: nameDocument,  ///EditForm
+          ),
+        );
+        Navigator.push(context, route);
+      },
+    );
+    return marker;
   }
 
   Future<void> findLatLng() async {
@@ -63,18 +122,22 @@ class _ShowMapState extends State<ShowMap> {
   }
 
   Set<Marker> myMarkers() {
-    return <Marker>[
-      Marker(
-        markerId: MarkerId('myLocation'),
-        position: LatLng(lat, lng),
-        infoWindow: InfoWindow(
-          title: 'คุณอยุ่ตรงนี้? ',
-          snippet: 'lat = $lat, lng = $lng',
-        ),
+    list.add(locationMarker());
+    list.add(jjMaker());
+    list.add(policeMarker());
+
+    return list.toSet();
+  }
+
+  Marker locationMarker() {
+    return Marker(
+      markerId: MarkerId('myLocation'),
+      position: LatLng(lat, lng),
+      infoWindow: InfoWindow(
+        title: 'คุณอยุ่ตรงนี้? ',
+        snippet: 'lat = $lat, lng = $lng',
       ),
-      jjMaker(),
-      policeMarker()
-    ].toSet();
+    );
   }
 
   Marker policeMarker() {
