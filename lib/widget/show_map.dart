@@ -25,6 +25,9 @@ class _ShowMapState extends State<ShowMap> {
   void initState() {
     super.initState();
     //findLatLng();
+
+    readDataFormFirebase();
+
     setState(() {
       lat = widget.lat;
       lng = widget.lng;
@@ -34,6 +37,10 @@ class _ShowMapState extends State<ShowMap> {
         .then((value) {
       policeIcon = value;
     });
+  }
+
+  Future<Null> readDataFormFirebase() async {
+    print('#############ReadDateFormFirebase Worked.##############');
   }
 
   Future<void> findLatLng() async {
@@ -116,6 +123,7 @@ class _ShowMapState extends State<ShowMap> {
           onMapCreated: (value) {},
         ),
         addButton(),
+        // refreshButton(),
       ],
     );
   }
@@ -141,7 +149,7 @@ class _ShowMapState extends State<ShowMap> {
                       .pushAndRemoveUntil(route, (value) => false);
                 },
                 child: Icon(
-                  Icons.add_circle,
+                  Icons.near_me,
                   size: 36.0,
                 ),
               ),
@@ -151,6 +159,38 @@ class _ShowMapState extends State<ShowMap> {
       ],
     );
   }
+
+//Current location refresh
+  // Widget refreshButton() {
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.start,
+  //     children: <Widget>[
+  //       Column(
+  //         mainAxisAlignment: MainAxisAlignment.end,
+  //         children: <Widget>[
+  //           Container(
+  //             margin: EdgeInsets.only(bottom: 40.0, left: 40.0),
+  //             child: FloatingActionButton(
+  //               backgroundColor: Colors.orange,
+  //               onPressed: () {
+  //                 MaterialPageRoute route = MaterialPageRoute(
+  //                     builder: (value) => MyService(
+  //                           currentWidget: AddLocation(),
+  //                         ));
+  //                 Navigator.of(context)
+  //                     .pushAndRemoveUntil(route, (value) => false);
+  //               },
+  //               child: Icon(
+  //                 Icons.near_me,
+  //                 size: 36.0,
+  //               ),
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ],
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
