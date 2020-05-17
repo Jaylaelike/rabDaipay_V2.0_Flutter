@@ -51,7 +51,7 @@ class _DetailMakerState extends State<DetailMaker> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[
+          children: <Widget>[ 
             showName(),
             showImage(),
             showDetail(),
