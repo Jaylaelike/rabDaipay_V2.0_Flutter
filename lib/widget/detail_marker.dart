@@ -68,7 +68,8 @@ class _DetailMakerState extends State<DetailMaker> {
     );
   }
 
-  Widget showRecordname() => MyStyle().showTitle('เพิ่มข้อมูลโดย คุณ:  ' + userModel.name);
+  Widget showRecordname() =>
+      MyStyle().showTitle('เพิ่มข้อมูลโดย คุณ:  ' + userModel.name);
 
   Text showRecord() => Text(userModel == null ? 'Name Record' : userModel.name);
 
@@ -101,19 +102,26 @@ class _DetailMakerState extends State<DetailMaker> {
     ].toSet();
   }
 
-  Widget showDate() => MyStyle().showTitle('วันที่เพิ่มข้อมูล:  ' + model.dateTime);
+  Widget showDate() =>
+      MyStyle().showTitle('วันที่เพิ่มข้อมูล:  ' + model.dateTime);
 
   Widget showDetail() => SingleChildScrollView(
-      child: Column(
-      children: <Widget>[
-        MyStyle().showTitle('รายละเอียด:  ' + model.detail),
-      ],
-    ),
-  );
+        child: Column(
+          children: <Widget>[
+            MyStyle().showTitle('รายละเอียด:  ' + model.detail),
+          ],
+        ),
+      );
 
   Widget showImage() => Container(
         height: MediaQuery.of(context).size.height * 0.3,
-        child: Image.network(model.pathImage),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20.0),
+          child: Image.network(
+            model.pathImage,
+            fit: BoxFit.fill,
+          ),
+        ),
       );
 
   Widget showAvartar() => Padding(
