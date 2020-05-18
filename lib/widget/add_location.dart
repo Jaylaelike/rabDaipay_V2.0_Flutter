@@ -74,6 +74,13 @@ class _AddLocationState extends State<AddLocation> {
     ].toSet();
   }
 
+  Widget mySizeBox() {
+    return SizedBox(
+      height: 10.0,
+      width: 20.0,
+    );
+  }
+
   Widget showMap() {
     if (lat != null) {
       latLng = LatLng(lat, lng);
@@ -89,7 +96,7 @@ class _AddLocationState extends State<AddLocation> {
           ? MyStyle().showProgress()
           : GoogleMap(
               initialCameraPosition: cameraPosition,
-              mapType: MapType.normal,
+              mapType: MapType.satellite,
               onMapCreated: (value) {},
               markers: mySetMaker(),
             ),
@@ -105,8 +112,12 @@ class _AddLocationState extends State<AddLocation> {
             child: TextField(
               onChanged: (value) => name = value.trim(),
               decoration: InputDecoration(
-                labelText: 'Name: ',
-                prefixIcon: Icon(Icons.account_box),
+                labelText: 'สถานที่: ',
+                prefixIcon: Icon(
+                  Icons.account_box,
+                  color: Colors.redAccent,
+                ),
+                hintText: 'กรุณากรอกชื่อสถานที่',
               ),
             ),
           ),
@@ -121,8 +132,12 @@ class _AddLocationState extends State<AddLocation> {
             child: TextField(
               onChanged: (value) => detail = value.trim(),
               decoration: InputDecoration(
-                labelText: 'Detail: ',
-                prefixIcon: Icon(Icons.details),
+                labelText: 'รายละเอียด: ',
+                prefixIcon: Icon(
+                  Icons.details,
+                  color: Colors.redAccent,
+                ),
+                hintText: 'กรุณากรอกรายละเอียด',
               ),
             ),
           ),
@@ -136,13 +151,15 @@ class _AddLocationState extends State<AddLocation> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            MyStyle().showTitle('Avatar Image'),
+            MyStyle().showTitle('รูปภาพของคุณ'),
             showImage(),
-            MyStyle().showTitle('Information'),
+            MyStyle().showTitle('ข้อมูลรับได้เพ'),
             nameForm(),
             detailForm(),
+            mySizeBox(),
             showDate(),
-            MyStyle().showTitle('Your location'),
+            mySizeBox(),
+            MyStyle().showTitle('พิกัดที่อยู่ของคุณ'),
             showMap(),
           ],
         ),
@@ -156,8 +173,14 @@ class _AddLocationState extends State<AddLocation> {
 
     return Row(
       children: <Widget>[
-        MyStyle().showTitle('Date Record : '),
-        Text(dateString)
+        MyStyle().showTitle('วันที่บันทึก : '),
+        Text(
+          dateString,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.green,
+          ),
+        )
       ],
     );
   }
@@ -165,6 +188,7 @@ class _AddLocationState extends State<AddLocation> {
   FloatingActionButton uploadButton() {
     return FloatingActionButton(
       child: Icon(Icons.cloud_upload),
+      backgroundColor: Colors.pinkAccent,
       onPressed: () {
         if (file == null) {
           normalDialog(context, 'ยังไม่ได้ใส่รูป', 'กรุณาแตะกล้องถ่ายรูป');
@@ -242,17 +266,25 @@ class _AddLocationState extends State<AddLocation> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             IconButton(
-              icon: Icon(Icons.add_a_photo),
+              icon: Icon(
+                Icons.add_a_photo,
+                color: Colors.pink,
+                size: 40.0,
+              ),
               onPressed: () => chooseImage(ImageSource.camera),
             ),
             file == null
-                ? Image.asset('images/awatar.png')
+                ? Image.asset('images/photos_1.png')
                 : Container(
                     width: MediaQuery.of(context).size.width - 100,
                     child: Image.file(file),
                   ),
             IconButton(
-                icon: Icon(Icons.add_photo_alternate),
+                icon: Icon(
+                  Icons.add_photo_alternate,
+                  color: Colors.purple,
+                  size: 40.0,
+                ),
                 onPressed: () => chooseImage(ImageSource.gallery)),
           ],
         ),

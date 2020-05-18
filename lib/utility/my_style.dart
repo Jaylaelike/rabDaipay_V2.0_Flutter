@@ -12,9 +12,10 @@ class MyStyle {
   }
 
   Widget showTitle(String string) {
-    return Row(
+    return Column(
       children: <Widget>[
-        Container(margin: EdgeInsets.all(10.0),
+        Container(
+          margin: EdgeInsets.all(10.0),
           child: Text(
             string,
             style: TextStyle(
@@ -22,6 +23,9 @@ class MyStyle {
               fontWeight: FontWeight.bold,
               color: Color.fromARGB(0xff, 0xc7, 0x91, 0x00),
             ),
+            textAlign: TextAlign.justify,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 5,
           ),
         ),
       ],

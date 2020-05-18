@@ -27,6 +27,8 @@ class _DetailMakerState extends State<DetailMaker> {
     // nameDocument = widget.nameDocument; ///EditForm
     print('name ==>> $nameDocument');
     findUser();
+
+    // findAvatar();
   }
 
   Future<Null> findUser() async {
@@ -38,6 +40,7 @@ class _DetailMakerState extends State<DetailMaker> {
       setState(() {
         userModel = UserModel.fromJson(map);
         print('NameUser ==>>>>> ${userModel.name}');
+        print('URLAvartar ==>>>>> ${userModel.urlAvatar}');
       });
     });
   }
@@ -51,18 +54,21 @@ class _DetailMakerState extends State<DetailMaker> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[ 
+          children: <Widget>[
             showName(),
             showImage(),
             showDetail(),
             showDate(),
             showLocation(context),
-            showRecord(),
+            showRecordname(),
+            showAvartar(),
           ],
         ),
       ),
     );
   }
+
+  Widget showRecordname() => MyStyle().showTitle('เพิ่มข้อมูลโดย คุณ:  ' + userModel.name);
 
   Text showRecord() => Text(userModel == null ? 'Name Record' : userModel.name);
 
@@ -89,21 +95,38 @@ class _DetailMakerState extends State<DetailMaker> {
           markerId: MarkerId('idMark'),
           position: LatLng(model.lat, model.lng),
           infoWindow: InfoWindow(
-            title: model.name,
-            snippet: model.dateTime,
+            title: model.detail,
+            snippet: model.name,
           )),
     ].toSet();
   }
 
-  Widget showDate() => MyStyle().showTitle(model.dateTime);
+  Widget showDate() => MyStyle().showTitle('วันที่เพิ่มข้อมูล:  ' + model.dateTime);
 
-  Widget showDetail() => MyStyle().showTitle(model.detail);
+  Widget showDetail() => SingleChildScrollView(
+      child: Column(
+      children: <Widget>[
+        MyStyle().showTitle('รายละเอียด:  ' + model.detail),
+      ],
+    ),
+  );
 
   Widget showImage() => Container(
         height: MediaQuery.of(context).size.height * 0.3,
         child: Image.network(model.pathImage),
       );
 
+  Widget showAvartar() => Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.20,
+          child: CircleAvatar(
+            radius: 70.0,
+            backgroundImage: NetworkImage(userModel.urlAvatar),
+            backgroundColor: Colors.grey,
+          ),
+        ),
+      );
   // Future<Null> confirmEditName() async {              ///EditForm
   //   showDialog(
   //     context: context,
@@ -131,12 +154,14 @@ class _DetailMakerState extends State<DetailMaker> {
   // }
 
   Widget showName() {
-    return ListTile(
-      title: MyStyle().showTitle(model.name),
-      // trailing: IconButton(                ///EditForm
-      //   icon: Icon(Icons.edit),
-      //   onPressed: () => confirmEditName(),
-      // ),
+    return Center(
+      child: ListTile(
+        title: MyStyle().showTitle('ชื่อสถานที่:  ' + model.name),
+        // trailing: IconButton(                ///EditForm
+        //   icon: Icon(Icons.edit),
+        //   onPressed: () => confirmEditName(),
+        // ),
+      ),
     );
   }
 }

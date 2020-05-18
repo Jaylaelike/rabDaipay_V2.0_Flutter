@@ -163,6 +163,21 @@ class _ShowMapState extends State<ShowMap> {
     list.add(sskMaker());
     list.add(yasoMaker());
     list.add(udnMaker());
+    list.add(loeiMaker());
+    list.add(cypMaker());
+    list.add(pcbMaker());
+    list.add(utdMaker());
+    list.add(phaeMaker());
+    list.add(sktMaker());
+    list.add(takMaker());
+    list.add(kanMaker());
+    list.add(nanMaker());
+    list.add(pyoMaker());
+    list.add(lmpMaker());
+    list.add(chmMaker());
+    list.add(chrMaker());
+    list.add(chkMaker());
+    list.add(sbrMaker());
     return list.toSet();
   }
 
@@ -657,7 +672,6 @@ class _ShowMapState extends State<ShowMap> {
     );
   }
 
-
   Marker yasoMaker() {
     return Marker(
       //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
@@ -671,7 +685,7 @@ class _ShowMapState extends State<ShowMap> {
     );
   }
 
-    Marker udnMaker() {
+  Marker udnMaker() {
     return Marker(
       //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
       icon: policeIcon,
@@ -680,6 +694,201 @@ class _ShowMapState extends State<ShowMap> {
       infoWindow: InfoWindow(
         title: 'สถานีอุดรธานี',
         snippet: 'สถานีอุดรธานี',
+      ),
+    );
+  }
+
+  Marker loeiMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home42'),
+      position: LatLng(17.470655, 101.444519),
+      infoWindow: InfoWindow(
+        title: 'สถานีเลย',
+        snippet: 'สถานีเลย',
+      ),
+    );
+  }
+
+  Marker cypMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home43'),
+      position: LatLng(15.72957, 102.02674),
+      infoWindow: InfoWindow(
+        title: 'สถานีชัยภูมิ',
+        snippet: 'สถานีชัยภูมิ',
+      ),
+    );
+  }
+
+  Marker pcbMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home44'),
+      position: LatLng(16.251014, 101.071373),
+      infoWindow: InfoWindow(
+        title: 'สถานีเพชรบูรณ์',
+        snippet: 'สถานีเพชรบูรณ์',
+      ),
+    );
+  }
+
+  Marker utdMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home45'),
+      position: LatLng(17.619686, 100.125433),
+      infoWindow: InfoWindow(
+        title: 'สถานีอุตรดิตถ์',
+        snippet: 'สถานีอุตรดิตถ์',
+      ),
+    );
+  }
+
+  Marker phaeMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home46'),
+      position: LatLng(17.93269, 100.00103),
+      infoWindow: InfoWindow(
+        title: 'สถานีแพร่',
+        snippet: 'สถานีแพร่',
+      ),
+    );
+  }
+
+  Marker sktMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home47'),
+      position: LatLng(16.984763, 100.010563),
+      infoWindow: InfoWindow(
+        title: 'สถานีสุโขทัย',
+        snippet: 'สถานีสุโขทัย',
+      ),
+    );
+  }
+
+  Marker takMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home48'),
+      position: LatLng(16.778691, 98.927687),
+      infoWindow: InfoWindow(
+        title: 'สถานีตาก',
+        snippet: 'สถานีตาก',
+      ),
+    );
+  }
+
+  Marker kanMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home49'),
+      position: LatLng(14.074444, 99.420556),
+      infoWindow: InfoWindow(
+        title: 'สถานีกาญจนบุรี',
+        snippet: 'สถานีกาญจนบุรี',
+      ),
+    );
+  }
+
+  Marker nanMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home50'),
+      position: LatLng(18.74264, 100.74115),
+      infoWindow: InfoWindow(
+        title: 'สถานีน่าน',
+        snippet: 'สถานีน่าน',
+      ),
+    );
+  }
+
+  Marker pyoMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home51'),
+      position: LatLng(19.194063, 99.880542),
+      infoWindow: InfoWindow(
+        title: 'สถานีพะเยา',
+        snippet: 'สถานีพะเยา',
+      ),
+    );
+  }
+
+  Marker lmpMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home52'),
+      position: LatLng(18.234928, 99.560597),
+      infoWindow: InfoWindow(
+        title: 'สถานีลำปาง',
+        snippet: 'สถานีลำปาง',
+      ),
+    );
+  }
+
+  Marker chmMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home53'),
+      position: LatLng(18.80814, 98.91502),
+      infoWindow: InfoWindow(
+        title: 'สถานีเชียงใหม่',
+        snippet: 'สถานีเชียงใหม่',
+      ),
+    );
+  }
+
+  Marker chrMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home54'),
+      position: LatLng(19.813755, 99.867041),
+      infoWindow: InfoWindow(
+        title: 'สถานีเชียงราย',
+        snippet: 'สถานีเชียงราย',
+      ),
+    );
+  }
+
+  Marker chkMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home55'),
+      position: LatLng(20.246216, 100.411051),
+      infoWindow: InfoWindow(
+        title: 'สถานีเชียงของ',
+        snippet: 'สถานีเชียงของ',
+      ),
+    );
+  }
+
+  Marker sbrMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home56'),
+      position: LatLng(14.836115, 100.377004),
+      infoWindow: InfoWindow(
+        title: 'สถานีสิงห์บุรี',
+        snippet: 'สถานีสิงห์บุรี',
       ),
     );
   }
@@ -701,6 +910,7 @@ class _ShowMapState extends State<ShowMap> {
           myLocationEnabled: true,
           initialCameraPosition: cameraPosition,
           mapType: MapType.normal,
+          //mapType: MapType.hybrid,
           markers: myMarkers(),
           onMapCreated: (value) {},
         ),
