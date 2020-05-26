@@ -8,6 +8,7 @@ import 'package:jayshowloaction/widget/add_location.dart';
 import 'package:jayshowloaction/widget/detail_marker.dart';
 import 'package:jayshowloaction/widget/my_service.dart';
 import 'package:location/location.dart';
+//import 'package:geolocator/geolocator.dart';
 
 class ShowMap extends StatefulWidget {
   final double lat;
@@ -20,6 +21,10 @@ class ShowMap extends StatefulWidget {
 
 class _ShowMapState extends State<ShowMap> {
 //  Field
+
+  // GoogleMapController mapController;
+
+  // String searchAddr;
 
   double lat, lng;
   BitmapDescriptor policeIcon;
@@ -178,6 +183,7 @@ class _ShowMapState extends State<ShowMap> {
     list.add(chrMaker());
     list.add(chkMaker());
     list.add(sbrMaker());
+    list.add(ntwMaker());
     return list.toSet();
   }
 
@@ -880,11 +886,24 @@ class _ShowMapState extends State<ShowMap> {
     );
   }
 
-  Marker sbrMaker() {
+  Marker ntwMaker() {
     return Marker(
       //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
       icon: policeIcon,
       markerId: MarkerId('home56'),
+      position: LatLng(6.741278, 100.691846),
+      infoWindow: InfoWindow(
+        title: 'สถานีนาทวี',
+        snippet: 'สถานีนาทวี',
+      ),
+    );
+  }
+
+  Marker sbrMaker() {
+    return Marker(
+      //icon: BitmapDescriptor.defaultMarkerWithHue(20.0),
+      icon: policeIcon,
+      markerId: MarkerId('home57'),
       position: LatLng(14.836115, 100.377004),
       infoWindow: InfoWindow(
         title: 'สถานีสิงห์บุรี',
@@ -915,7 +934,7 @@ class _ShowMapState extends State<ShowMap> {
           onMapCreated: (value) {},
         ),
         addButton(),
-        // refreshButton(),
+        // searchBar(),
       ],
     );
   }
@@ -951,6 +970,55 @@ class _ShowMapState extends State<ShowMap> {
       ],
     );
   }
+
+  // Widget searchBar() {
+  //   return Column(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     children: <Widget>[
+  //       Positioned(
+  //         top: 30.0,
+  //         right: 15.0,
+  //         left: 15.0,
+  //         child: Container(
+  //           height: 50.0,
+  //           width: double.infinity,
+  //           decoration: BoxDecoration(
+  //               borderRadius: BorderRadius.circular(10.0), color: Colors.white),
+  //           child: TextField(
+  //             decoration: InputDecoration(
+  //                 hintText: 'Enter Address',
+  //                 border: InputBorder.none,
+  //                 contentPadding: EdgeInsets.only(left: 15.0, top: 15.0),
+  //                 suffixIcon: IconButton(
+  //                     icon: Icon(Icons.search),
+  //                      onPressed: searchandNavigate(),
+  //                     iconSize: 30.0)),
+  //             onChanged: (val) {
+  //               setState(() {
+  //                 searchAddr = val;
+  //               });
+  //             },
+  //           ),
+  //         ),
+  //       )
+  //     ],
+  //   );
+  // }
+
+  // searchandNavigate() {
+  //   Geolocator().placemarkFromAddress(searchAddr).then((result) {
+  //     mapController.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+  //         target:
+  //             LatLng(result[0].position.latitude, result[0].position.longitude),
+  //         zoom: 10.0)));
+  //   });
+  // }
+
+  // void onMapCreated(controller) {
+  //   setState(() {
+  //     mapController = controller;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
