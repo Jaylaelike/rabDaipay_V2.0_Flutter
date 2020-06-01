@@ -8,7 +8,6 @@ import 'package:jayshowloaction/widget/add_location.dart';
 import 'package:jayshowloaction/widget/detail_marker.dart';
 import 'package:jayshowloaction/widget/my_service.dart';
 import 'package:location/location.dart';
-//import 'package:geolocator/geolocator.dart';
 
 class ShowMap extends StatefulWidget {
   final double lat;
@@ -934,7 +933,6 @@ class _ShowMapState extends State<ShowMap> {
           onMapCreated: (value) {},
         ),
         addButton(),
-        // searchBar(),
       ],
     );
   }
@@ -1023,10 +1021,11 @@ class _ShowMapState extends State<ShowMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: lat == null
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : showMap());
+      body: lat == null
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : showMap(),
+    );
   }
 }

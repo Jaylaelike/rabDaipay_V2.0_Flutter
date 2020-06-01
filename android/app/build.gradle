@@ -47,8 +47,8 @@ def keystoreProperties = new Properties()
         applicationId "com.thaipbschpeng.jayshowloaction"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 1
-        versionName '1.0'
+        versionCode 3
+        versionName '1.2.1'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }

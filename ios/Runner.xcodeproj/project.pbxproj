@@ -383,7 +383,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 94HL6LLP5J;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -396,6 +396,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				MARKETING_VERSION = 1.3.0;
 				OTHER_LIBTOOLFLAGS = "$(inherited) -framework Flutter";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thaipbschpeng.jayshowloaction;
 				PRODUCT_NAME = Rabdaipay;
@@ -519,7 +520,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 94HL6LLP5J;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -532,6 +533,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				MARKETING_VERSION = 1.3.0;
 				OTHER_LIBTOOLFLAGS = "$(inherited) -framework Flutter";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thaipbschpeng.jayshowloaction;
 				PRODUCT_NAME = Rabdaipay;
@@ -550,7 +552,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 94HL6LLP5J;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -563,6 +565,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				MARKETING_VERSION = 1.3.0;
 				OTHER_LIBTOOLFLAGS = "$(inherited) -framework Flutter";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thaipbschpeng.jayshowloaction;
 				PRODUCT_NAME = Rabdaipay;

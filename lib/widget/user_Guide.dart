@@ -35,7 +35,7 @@ class _UserGuideState extends State<UserGuide> {
               end: Alignment.topCenter,
               tileMode: TileMode.clamp)),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.yellow[100],
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -265,15 +265,15 @@ class CardScrollWidget extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 8.0),
-                              child: Text(title[i],
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 25.0,
-                                      fontFamily: "SF-Pro-Text-Regular")),
-                            ),
+                            // Padding(
+                            //   padding: EdgeInsets.symmetric(
+                            //       horizontal: 16.0, vertical: 8.0),
+                            //   child: Text(title[i],
+                            //       style: TextStyle(
+                            //           color: Colors.white,
+                            //           fontSize: 25.0,
+                            //           fontFamily: "SF-Pro-Text-Regular")),
+                            // ),
                             SizedBox(
                               height: 10.0,
                             ),

@@ -24,7 +24,10 @@ class _RegisterState extends State<Register> {
 
   Widget registerButton() {
     return IconButton(
-      icon: Icon(Icons.fingerprint,size: 35.0,),
+      icon: Icon(
+        Icons.fingerprint,
+        size: 35.0,
+      ),
       onPressed: () {
         if (file == null) {
           normalDialog(context, 'คุณยังไม่มีรูปภาพ', 'กรุณากดอัพโหลดรูปภาพ');
@@ -36,8 +39,9 @@ class _RegisterState extends State<Register> {
             password.isEmpty) {
           normalDialog(
               context, 'ข้อมูลของคุณยังว่าง', 'กรุณากรอกข้อมูลคุณให้ครบ');
-        } else if (gendle == null) {
-          normalDialog(context, 'ระบุเพศของคุณ', 'โปรดระบุเพศของคุณ');
+          // } else if (gendle == null) {
+          //   normalDialog(context, 'ระบุเพศของคุณ', 'โปรดระบุเพศของคุณ');
+          // }
         } else {
           uploadtoFirebase();
         }
@@ -130,7 +134,8 @@ class _RegisterState extends State<Register> {
           showButon(),
           mySizeBox(),
           nameForm(),
-          chooseGender(),
+          mySizeBox(),
+          // chooseGender(),  //ios
           emailForm(),
           mySizeBox(),
           passForm(),
@@ -139,40 +144,41 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  Row chooseGender() => Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[maleRadio(), femaleRadio()],
-      );
+//ios Gender not show
+  // Row chooseGender() => Row(
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       children: <Widget>[maleRadio(), femaleRadio()],
+  //     );
 
-  Row maleRadio() => Row(
-        children: <Widget>[
-          Radio(
-            value: 'Male',
-            groupValue: gendle,
-            onChanged: (value) {
-              setState(() {
-                gendle = value;
-              });
-            },
-          ),
-          Text('ชาย'),
-        ],
-      );
+  // Row maleRadio() => Row(
+  //       children: <Widget>[
+  //         Radio(
+  //           value: 'Male',
+  //           groupValue: gendle,
+  //           onChanged: (value) {
+  //             setState(() {
+  //               gendle = value;
+  //             });
+  //           },
+  //         ),
+  //         Text('ชาย'),
+  //       ],
+  //     );
 
-  Row femaleRadio() => Row(
-        children: <Widget>[
-          Radio(
-            value: 'Female',
-            groupValue: gendle,
-            onChanged: (value) {
-              setState(() {
-                gendle = value;
-              });
-            },
-          ),
-          Text('หญิง'),
-        ],
-      );
+  // Row femaleRadio() => Row(
+  //       children: <Widget>[
+  //         Radio(
+  //           value: 'Female',
+  //           groupValue: gendle,
+  //           onChanged: (value) {
+  //             setState(() {
+  //               gendle = value;
+  //             });
+  //           },
+  //         ),
+  //         Text('หญิง'),
+  //       ],
+  //     );
 
   Widget nameForm() {
     String title = "ชื่อของคุณ: ";

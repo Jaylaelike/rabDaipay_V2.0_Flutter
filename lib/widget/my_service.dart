@@ -7,6 +7,7 @@ import 'package:jayshowloaction/widget/main_Home.dart';
 import 'package:jayshowloaction/widget/show_map.dart';
 import 'package:jayshowloaction/widget/user_Guide.dart';
 import 'package:location/location.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyService extends StatefulWidget {
   //state throw
@@ -73,6 +74,15 @@ class _MyServiceState extends State<MyService> {
     });
   }
 
+  _launchURL() async {
+    const url = 'tel:027902314';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   Widget mySizeBox() {
     return SizedBox(
       height: 150.0,
@@ -113,7 +123,7 @@ class _MyServiceState extends State<MyService> {
         color: MyStyle().darkColor,
       ),
       title: Text('Show Map'),
-      subtitle: Text('Descrpition Page Show map'),
+      subtitle: Text('แสดงผลแผนที่'),
     );
   }
 
@@ -134,7 +144,7 @@ class _MyServiceState extends State<MyService> {
         color: Colors.redAccent, //MyStyle().darkColor
       ),
       title: Text('Show Add Location'),
-      subtitle: Text('Show Add Location'),
+      subtitle: Text('แตะเพื่อเพิ่มสถานที่'),
     );
   }
 
@@ -156,7 +166,7 @@ class _MyServiceState extends State<MyService> {
     );
   }
 
-    ListTile menuShowcontact() {
+  ListTile menuShowcontact() {
     return ListTile(
       onTap: () {
         setState(() {
@@ -185,7 +195,7 @@ class _MyServiceState extends State<MyService> {
         color: MyStyle().darkColor,
       ),
       title: Text('Sign Out'),
-      subtitle: Text('Sign out to Authen'),
+      subtitle: Text('ออกจากระบบเพื่อlogin'),
     );
   }
 
@@ -238,8 +248,32 @@ class _MyServiceState extends State<MyService> {
         drawer: myDrawer(),
         appBar: AppBar(
           backgroundColor: MyStyle().primaryColor,
-          title: Text('RabdaiPay App'),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Image.asset(
+                'images/LOGO_CHP_2.png',
+                fit: BoxFit.contain,
+                height: 32,
+              ),
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('RabdaiPay App'),
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.phone_in_talk,color: Colors.blue,),
+              onPressed: _launchURL,
+            ),
+          ],
         ),
+
+        // appBar: AppBar(
+        //   backgroundColor: MyStyle().primaryColor,
+        //   title: Text('RabdaiPay App'),
+        // ),
         body:
             currrentWidget == null ? MyStyle().showProgress() : currrentWidget);
   }

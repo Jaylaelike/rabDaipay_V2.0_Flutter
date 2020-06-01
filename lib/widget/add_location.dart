@@ -130,11 +130,13 @@ class _AddLocationState extends State<AddLocation> {
           Container(
             width: MediaQuery.of(context).size.width * 0.6,
             child: TextField(
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
               onChanged: (value) => detail = value.trim(),
               decoration: InputDecoration(
                 labelText: 'รายละเอียด: ',
                 prefixIcon: Icon(
-                  Icons.details,
+                  Icons.directions_transit,
                   color: Colors.redAccent,
                 ),
                 hintText: 'กรุณากรอกรายละเอียด',
